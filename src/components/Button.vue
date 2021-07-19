@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-on:click="getCat" :disabled="loadedStatusButton">Получить котика</button>
+    <button v-on:click="getCat" :disabled="loadedStatusButton">{{ getName }}</button>
   </div>
 </template>
 
@@ -9,17 +9,22 @@ import theCatApi from "../api/theCatApi";
 import {mapMutations, mapState} from "vuex";
 
 export default {
+  props: {
+    buttonName: {type: String, required: true}
+  },
   methods: {
     ...mapMutations(["setNewCat", 'setLoadedStatusButton']),
     async getCat() {
       this.setLoadedStatusButton(true);
       const url = await theCatApi.getCatApi();
       this.setNewCat(url);
-      this.setLoadedStatusButton(false);
     }
   },
   computed: {
-    ...mapState(['loadedStatusButton'])
+    ...mapState(['loadedStatusButton']),
+    getName() {
+     return this.loadedStatusButton ? "Загрузка..." : this.buttonName;
+    }
   }
 }
 </script>

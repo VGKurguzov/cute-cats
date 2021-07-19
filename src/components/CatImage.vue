@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="imageCatUrl" alt="Loading..."/>
+    <img @load="isLoad" :src="imageCatUrl" alt="Loading..."/>
   </div>
 </template>
 
@@ -15,7 +15,10 @@ export default {
     this.setNewCat(url);
   },
   methods: {
-    ...mapMutations(["setNewCat"])
+    ...mapMutations(["setNewCat", "setLoadedStatusButton"]),
+    isLoad() {
+      this.setLoadedStatusButton(false);
+    }
   },
   computed: {
     ...mapState(["imageCatUrl"])
