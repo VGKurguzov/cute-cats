@@ -1,12 +1,18 @@
 <template>
   <div id="app">
-    <router-view/>
+    <h1>Cute Cats</h1>
+    <CatImage/>
+    <Button/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    CatImage: () => import("./components/CatImage"),
+    Button: () => import("./components/Button"),
+  },
 }
 </script>
 
