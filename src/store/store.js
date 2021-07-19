@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    imageCatUrl: "https://cdn2.thecatapi.com/images/b2b.jpg",
+    imageCatUrl: "",
     loadedStatusButton: false
   },
   mutations: {

@@ -5,10 +5,18 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
+import theCatApi from "../api/theCatApi";
 
 export default {
   name: 'CuteCats',
+  async mounted() {
+    const url = await theCatApi.getCatApi();
+    this.setNewCat(url);
+  },
+  methods: {
+    ...mapMutations(["setNewCat"])
+  },
   computed: {
     ...mapState(["imageCatUrl"])
   }
